@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Source Supply | Digital Solutions Studio</title>
+  <meta name="description" content="Custom websites, AI automation, and digital solutions that work as hard as you do. 40+ developers building technology for real businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Inline critical loader styles so they render immediately -->
+  <style>
+    #loader{position:fixed;inset:0;z-index:10000;background:#050510;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    #loader-canvas{position:absolute;inset:0;width:100%;height:100%}
+    .loader-content{position:relative;z-index:2;text-align:center}
+    .loader-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,3.2rem);font-weight:800;letter-spacing:.15em;color:#fff;margin-bottom:.5rem}
+    .loader-sub{font-family:'Inter',sans-serif;font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:2rem}
+    .loader-bar{width:220px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;margin:0 auto;overflow:hidden}
+    .loader-progress{width:0%;height:100%;background:linear-gradient(90deg,#00d4ff,#7b2fff);border-radius:2px;transition:width .3s}
+    .loader-pct{font-family:'Space Grotesk',sans-serif;font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.75rem;letter-spacing:.15em}
+  </style>
+</head>
+<body>
+  <!-- ========== LOADER ========== -->
+  <div id="loader">
+    <canvas id="loader-canvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-title" id="loaderTitle">WORK SOURCE SUPPLY</div>
+      <div class="loader-sub">Digital Solutions Studio</div>
+      <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
+      <div class="loader-pct" id="loaderPct">0%</div>
+    </div>
+  </div>
+
+  <!-- ========== CUSTOM CURSOR ========== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ========== THREE.JS CANVAS ========== -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ========== NOISE OVERLAY ========== -->
+  <div class="noise"></div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav id="nav" class="glass-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-mark">WSS</span>
+        <span class="logo-text">Work Source Supply</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#stories" class="nav-link">Results</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#contact" class="nav-link nav-link--cta magnetic-btn">
+          <span class="btn-text">Start a Project</span>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="section hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">Digital Solutions Studio</div>
+      <h1 class="hero-heading">
+        <span class="reveal-up" style="--d:.1s">We Build It.</span>
+        <span class="reveal-up accent-text" style="--d:.25s">We Automate It.</span>
+        <span class="reveal-up" style="--d:.4s">You Grow.</span>
+      </h1>
+      <p class="hero-sub reveal-up" style="--d:.55s">Custom websites, AI-powered automation, and digital solutions<br>that work as hard as you do.</p>
+      <div class="hero-btns reveal-up" style="--d:.7s">
+        <a href="#contact" class="btn btn-primary magnetic-btn"><span class="btn-text" data-text="Start Your Project">Start Your Project</span></a>
+        <a href="#services" class="btn btn-outline magnetic-btn"><span class="btn-text" data-text="See What We Do">See What We Do</span></a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>Web Design</span><span class="marquee-dot">&#x2666;</span>
+        <span>Automation</span><span class="marquee-dot">&#x2666;</span>
+        <span>AI Solutions</span><span class="marquee-dot">&#x2666;</span>
+        <span>Custom Apps</span><span class="marquee-dot">&#x2666;</span>
+        <span>Branding</span><span class="marquee-dot">&#x2666;</span>
+        <span>SEO</span><span class="marquee-dot">&#x2666;</span>
+        <span>Phone Automation</span><span class="marquee-dot">&#x2666;</span>
+        <span>Chatbots</span><span class="marquee-dot">&#x2666;</span>
+        <span>Strategy</span><span class="marquee-dot">&#x2666;</span>
+        <span>Integrations</span><span class="marquee-dot">&#x2666;</span>
+        <span>Web Design</span><span class="marquee-dot">&#x2666;</span>
+        <span>Automation</span><span class="marquee-dot">&#x2666;</span>
+        <span>AI Solutions</span><span class="marquee-dot">&#x2666;</span>
+        <span>Custom Apps</span><span class="marquee-dot">&#x2666;</span>
+        <span>Branding</span><span class="marquee-dot">&#x2666;</span>
+        <span>SEO</span><span class="marquee-dot">&#x2666;</span>
+        <span>Phone Automation</span><span class="marquee-dot">&#x2666;</span>
+        <span>Chatbots</span><span class="marquee-dot">&#x2666;</span>
+        <span>Strategy</span><span class="marquee-dot">&#x2666;</span>
+        <span>Integrations</span><span class="marquee-dot">&#x2666;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-label reveal-up">Who We Are</div>
+      <h2 class="section-heading reveal-up">One Team.<br><span class="accent-text">Every Solution.</span></h2>
+      <p class="section-sub reveal-up">We're a full-service digital studio with 40+ developers, designers, and strategists. We don't just build websites — we build the technology that runs your business. From your first click to your thousandth customer, we're behind the scenes making it happen.</p>
+      <div class="stats-row">
+        <div class="stat-card glass reveal-up">
+          <div class="stat-number" data-count="40">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Developers &amp; Designers</div>
+        </div>
+        <div class="stat-card glass reveal-up">
+          <div class="stat-number" data-count="200">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-card glass reveal-up">
+          <div class="stat-number" data-count="99">0</div>
+          <div class="stat-suffix">.9%</div>
+          <div class="stat-label">Uptime Guarantee</div>
+        </div>
+        <div class="stat-card glass reveal-up">
+          <div class="stat-number" data-count="50">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY US ========== -->
+  <section id="why" class="section why">
+    <div class="container">
+      <div class="section-label reveal-up">Why Work Source Supply</div>
+      <h2 class="section-heading reveal-up">Built Different.<br><span class="accent-text">On Purpose.</span></h2>
+      <div class="why-grid">
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-hex"></div></div>
+          <h3>One Team for Everything</h3>
+          <p>No juggling 5 different vendors who don't talk to each other. We handle design, development, automation, and support — all under one roof.</p>
+        </div>
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-tri"></div></div>
+          <h3>We Speak Your Language</h3>
+          <p>No jargon, no confusing proposals. We explain everything in plain English so you always know what you're getting and why.</p>
+        </div>
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-circle"></div></div>
+          <h3>Automation-First Mindset</h3>
+          <p>Every solution we build is designed to save you time and money. If a task can be automated, we'll find a way to make it happen.</p>
+        </div>
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-diamond"></div></div>
+          <h3>We Stick Around</h3>
+          <p>We don't disappear after launch. We're your long-term technology partner — monitoring, updating, and improving everything we build.</p>
+        </div>
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-oct"></div></div>
+          <h3>Real ROI Focus</h3>
+          <p>If it doesn't make or save you money, we don't recommend it. Every dollar you spend with us should earn more back.</p>
+        </div>
+        <div class="why-card glass reveal-up">
+          <div class="why-icon"><div class="geo geo-cross"></div></div>
+          <h3>Enterprise Results, Real Pricing</h3>
+          <p>You get the same quality of work the big companies get — without the big-company price tag. Built for real businesses with real budgets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ORBITAL ========== -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div class="section-label reveal-up">What We Build</div>
+      <h2 class="section-heading reveal-up">Our Services.<br><span class="accent-text">Your Advantage.</span></h2>
+      <p class="section-sub reveal-up">Drag to explore or use the arrows to browse our full catalog of services.</p>
+    </div>
+    <div class="orbital-viewport">
+      <div class="orbital-container" id="orbitalContainer">
+        <div class="orbital-ring" id="orbitalRing">
+
+          <div class="orbital-card glass" data-service="1">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-hex accent-blue"></div></div>
+            <h3>Web Design &amp; Development</h3>
+            <p>Custom websites built to convert. Mobile-first, lightning-fast, and designed around your brand.</p>
+            <div class="card-tag">Most Popular</div>
+          </div>
+
+          <div class="orbital-card glass" data-service="2">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-oct accent-purple"></div></div>
+            <h3>Custom Web Applications</h3>
+            <p>Dashboards, portals, booking systems, and internal tools — built exactly for your workflow.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="3">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-tri accent-pink"></div></div>
+            <h3>Custom Forms &amp; Data</h3>
+            <p>Smart intake forms, lead capture, onboarding — with conditional logic that gets completed every time.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="4">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-diamond accent-green"></div></div>
+            <h3>Business Process Automation</h3>
+            <p>We find the tasks eating your team's time and automate them. Emails, data entry, reporting — on autopilot.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="5">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-circle accent-blue"></div></div>
+            <h3>AI Phone Automation</h3>
+            <p>AI receptionists that answer calls, book appointments, and follow up — 24/7, no sick days, no missed calls.</p>
+            <div class="card-tag">High Demand</div>
+          </div>
+
+          <div class="orbital-card glass" data-service="6">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-hex accent-purple"></div></div>
+            <h3>AI &amp; Chatbot Solutions</h3>
+            <p>Website chatbots that qualify leads, answer questions, and hand off to your team in real-time.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="7">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-cross accent-pink"></div></div>
+            <h3>Integrations &amp; APIs</h3>
+            <p>Connect QuickBooks, your CRM, email, payments — so you stop entering the same data three times.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="8">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-tri accent-green"></div></div>
+            <h3>SEO &amp; Digital Presence</h3>
+            <p>Get found on Google. Local SEO, technical audits, and the optimization that puts you on page one.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="9">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-diamond accent-blue"></div></div>
+            <h3>Branding &amp; Identity</h3>
+            <p>Logos, color palettes, brand guides, social templates — everything you need to look as good as you are.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="10">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-oct accent-purple"></div></div>
+            <h3>Hosting &amp; Maintenance</h3>
+            <p>99.9% uptime, security monitoring, backups, updates, and a team that picks up the phone when things break.</p>
+          </div>
+
+          <div class="orbital-card glass" data-service="11">
+            <div class="card-light"></div>
+            <div class="card-icon"><div class="geo geo-circle accent-pink"></div></div>
+            <h3>Consulting &amp; Strategy</h3>
+            <p>Not sure what you need? We audit your tech, find the gaps, and build a roadmap that actually saves you money.</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="orbital-controls">
+        <button class="orbital-btn orbital-prev magnetic-btn" aria-label="Previous"><span class="btn-text">&larr;</span></button>
+        <button class="orbital-btn orbital-next magnetic-btn" aria-label="Next"><span class="btn-text">&rarr;</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STORIES ========== -->
+  <section id="stories" class="section stories">
+    <div class="container">
+      <div class="section-label reveal-up">Real Results</div>
+      <h2 class="section-heading reveal-up">Businesses Like Yours.<br><span class="accent-text">Problems We Solved.</span></h2>
+      <p class="section-sub reveal-up">These aren't hypotheticals. These are the kinds of problems we fix every week.</p>
+    </div>
+    <div class="stories-scroll">
+      <div class="stories-track" id="storiesTrack">
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">HVAC Company</div>
+          <div class="story-problem">Their website looked outdated and didn't work on phones. They were losing jobs to competitors with better online presence.</div>
+          <div class="story-solution">We rebuilt their site with online booking, service area pages, and a click-to-call button.</div>
+          <div class="story-result">
+            <div class="story-stat">2x</div>
+            <div class="story-stat-label">Online leads in 60 days</div>
+          </div>
+        </div>
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">Property Management</div>
+          <div class="story-problem">Tracking 200+ units across spreadsheets, sticky notes, and group texts. Constant miscommunication and lost requests.</div>
+          <div class="story-solution">We built a simple dashboard — every unit, every tenant, every maintenance request in one place.</div>
+          <div class="story-result">
+            <div class="story-stat">85%</div>
+            <div class="story-stat-label">Fewer missed requests</div>
+          </div>
+        </div>
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">Law Firm</div>
+          <div class="story-problem">Their intake form was a PDF emailed to clients. Half came back incomplete, slowing down every single case.</div>
+          <div class="story-solution">We created a smart online form that walks clients through the right questions and sends data straight to their system.</div>
+          <div class="story-result">
+            <div class="story-stat">3x</div>
+            <div class="story-stat-label">Faster client onboarding</div>
+          </div>
+        </div>
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">Staffing Agency</div>
+          <div class="story-problem">Office manager was spending 3 hours a day sending confirmation emails, updating spreadsheets, and filing paperwork.</div>
+          <div class="story-solution">We automated all of it. Confirmations, updates, filing — zero clicks, zero mistakes.</div>
+          <div class="story-result">
+            <div class="story-stat">15hrs</div>
+            <div class="story-stat-label">Saved per week</div>
+          </div>
+        </div>
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">Dental Office</div>
+          <div class="story-problem">Missing 30% of calls during lunch and after hours. Every missed call was a missed appointment.</div>
+          <div class="story-solution">AI receptionist answers every call, books appointments, and sends confirmation texts — even at 10 PM on a Saturday.</div>
+          <div class="story-result">
+            <div class="story-stat">0</div>
+            <div class="story-stat-label">Missed calls per month</div>
+          </div>
+        </div>
+
+        <div class="story-card glass reveal-up">
+          <div class="story-industry">Contractor</div>
+          <div class="story-problem">Entering the same job info into QuickBooks, scheduling app, AND invoicing tool — three times for every single job.</div>
+          <div class="story-solution">We connected all three systems. Now when a job is created, everything updates automatically.</div>
+          <div class="story-result">
+            <div class="story-stat">100%</div>
+            <div class="story-stat-label">Eliminated double-entry</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INDUSTRIES ========== -->
+  <section id="industries" class="section industries">
+    <div class="container">
+      <div class="section-label reveal-up">Industries</div>
+      <h2 class="section-heading reveal-up">Who We Help.<br><span class="accent-text">Businesses Like Yours.</span></h2>
+      <div class="industry-grid">
+        <div class="industry-card glass reveal-up"><div class="geo geo-hex accent-blue"></div><span>Contractors &amp; Home Services</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-tri accent-purple"></div><span>Medical &amp; Dental Offices</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-diamond accent-pink"></div><span>Law Firms &amp; Legal</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-oct accent-green"></div><span>Restaurants &amp; Hospitality</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-circle accent-blue"></div><span>Real Estate &amp; Property Mgmt</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-cross accent-purple"></div><span>Staffing &amp; Recruiting</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-hex accent-pink"></div><span>Fitness &amp; Wellness</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-tri accent-green"></div><span>E-commerce &amp; Retail</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-diamond accent-blue"></div><span>Insurance &amp; Finance</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-oct accent-purple"></div><span>Logistics &amp; Transportation</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-circle accent-pink"></div><span>Professional Services</span></div>
+        <div class="industry-card glass reveal-up"><div class="geo geo-cross accent-green"></div><span>Nonprofits &amp; Education</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM ========== -->
+  <section id="team" class="section team">
+    <div class="container">
+      <div class="section-label reveal-up">Our People</div>
+      <h2 class="section-heading reveal-up">40+ Developers.<br><span class="accent-text">One Mission.</span></h2>
+      <p class="section-sub reveal-up">Designers, engineers, strategists, and problem-solvers — all focused on making your business run better.</p>
+      <div class="team-grid">
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#00d4ff;--c2:#7b2fff">JR</div>
+          <h4>Jordan Rivera</h4>
+          <span>Founder &amp; CEO</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#7b2fff;--c2:#ff006e">MK</div>
+          <h4>Morgan Kim</h4>
+          <span>CTO &amp; Lead Architect</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#ff006e;--c2:#00ffaa">AW</div>
+          <h4>Alex Washington</h4>
+          <span>Creative Director</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#00ffaa;--c2:#00d4ff">SP</div>
+          <h4>Sam Patel</h4>
+          <span>Lead UI/UX Designer</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#00d4ff;--c2:#ff006e">CJ</div>
+          <h4>Casey Johnson</h4>
+          <span>Senior Full-Stack Developer</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#7b2fff;--c2:#00ffaa">TN</div>
+          <h4>Taylor Nguyen</h4>
+          <span>AI &amp; Automation Lead</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#ff006e;--c2:#00d4ff">RL</div>
+          <h4>Riley Lopez</h4>
+          <span>Frontend Lead</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#00ffaa;--c2:#7b2fff">DA</div>
+          <h4>Drew Anderson</h4>
+          <span>Backend Lead</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#00d4ff;--c2:#00ffaa">JH</div>
+          <h4>Jamie Hernandez</h4>
+          <span>DevOps Lead</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#7b2fff;--c2:#ff006e">KP</div>
+          <h4>Kira Park</h4>
+          <span>SEO Strategist</span>
+        </div>
+        <div class="team-card glass reveal-up">
+          <div class="team-avatar" style="--c1:#ff006e;--c2:#00ffaa">EM</div>
+          <h4>Eli Martinez</h4>
+          <span>Project Manager</span>
+        </div>
+        <div class="team-card glass reveal-up team-card--more">
+          <div class="team-avatar team-avatar--more" style="--c1:#0a0a1f;--c2:#1a1a3f">+28</div>
+          <h4>And Many More</h4>
+          <span>Engineers, Designers &amp; Strategists</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-up">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-heading">Let's Build<br><span class="accent-text">Something Great.</span></h2>
+          <p>Tell us about your business and what you need. No jargon, no pressure — just a real conversation about how technology can help you grow.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="geo geo-hex accent-blue"></div>
+              <div>
+                <strong>Email</strong>
+                <span>hello@worksourcesupply.com</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="geo geo-tri accent-purple"></div>
+              <div>
+                <strong>Response Time</strong>
+                <span>Usually within 2 hours</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="geo geo-diamond accent-green"></div>
+              <div>
+                <strong>Free Consultation</strong>
+                <span>30-minute strategy call, no strings attached</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form glass reveal-up" id="contactForm" novalidate>
+          <div class="form-group">
+            <input type="text" id="formName" name="name" required placeholder=" " autocomplete="name">
+            <label for="formName">Your Name</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="formEmail" name="email" required placeholder=" " autocomplete="email">
+            <label for="formEmail">Email Address</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="formCompany" name="company" placeholder=" " autocomplete="organization">
+            <label for="formCompany">Company Name</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <select id="formService" name="service" required>
+              <option value="" disabled selected>What do you need help with?</option>
+              <option>Website Design &amp; Development</option>
+              <option>Custom Application</option>
+              <option>Business Automation</option>
+              <option>AI &amp; Phone Automation</option>
+              <option>SEO &amp; Digital Marketing</option>
+              <option>Branding &amp; Identity</option>
+              <option>Consulting &amp; Strategy</option>
+              <option>Not Sure Yet — Let's Talk</option>
+            </select>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <textarea id="formMsg" name="message" rows="4" required placeholder=" "></textarea>
+            <label for="formMsg">Tell us about your project</label>
+            <div class="form-line"></div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full magnetic-btn">
+            <span class="btn-text" data-text="Send Message">Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-mark">WSS</span>
+          <span class="logo-text">Work Source Supply</span>
+          <p class="footer-tagline">Technology that works as hard as you do.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#services">Web Design</a>
+          <a href="#services">Custom Apps</a>
+          <a href="#services">AI Automation</a>
+          <a href="#services">SEO &amp; Branding</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About Us</a>
+          <a href="#team">Our Team</a>
+          <a href="#stories">Case Studies</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <a href="#contact">Start a Project</a>
+          <a href="#contact">Free Consultation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Work Source Supply. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
