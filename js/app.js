@@ -289,8 +289,8 @@
       {text:'AI Data Analysis',icon:'<span class="ico ico-cpu"></span>',type:'Category',url:'automations.html#data'},
       {text:'AI Employees',icon:'<span class="ico ico-cpu"></span>',type:'Category',url:'automations.html#insane'},
       {text:'Pricing Plans',icon:'<span class="ico ico-dollar"></span>',type:'Info',url:'pricing.html'},
-      {text:'Get a Website Built',icon:'<span class="ico ico-document"></span>',type:'Info',url:'blueprint.html'},
-      {text:'Shop Plans',icon:'<span class="ico ico-cart"></span>',type:'Info',url:'shop.html'},
+      {text:'Get a Website Built',icon:'<span class="ico ico-document"></span>',type:'Info',url:'get-started.html'},
+      {text:'Get Started',icon:'<span class="ico ico-cart"></span>',type:'Info',url:'get-started.html'},
       {text:'Book a Call',icon:'<span class="ico ico-calendar"></span>',type:'Info',url:'schedule.html'},
       {text:'Salon & Spa',icon:'<span class="ico ico-scissors"></span>',type:'Industry',url:'industry.html?type=salon'},
       {text:'Fitness & Gyms',icon:'<span class="ico ico-dumbbell"></span>',type:'Industry',url:'industry.html?type=fitness'},
@@ -651,12 +651,12 @@
     });
 
     // Next/Prev
-    document.querySelectorAll('[data-intake-next]').forEach(function(btn){
+    document.querySelectorAll('.intake-next').forEach(function(btn){
       btn.addEventListener('click', function(){
         if(currentStep < intakePanels.length - 1) showStep(currentStep + 1);
       });
     });
-    document.querySelectorAll('[data-intake-prev]').forEach(function(btn){
+    document.querySelectorAll('.intake-prev').forEach(function(btn){
       btn.addEventListener('click', function(){
         if(currentStep > 0) showStep(currentStep - 1);
       });
@@ -690,49 +690,6 @@
     }).then(function(r){ return r.json(); })
     .then(function(){ if(onSuccess) onSuccess(); })
     .catch(function(){ if(onSuccess) onSuccess(); });
-  }
-
-  /* ============ SHOP INTAKE FORM ============ */
-  var shopIntake = document.getElementById('shopIntakeForm');
-  if(shopIntake){
-    shopIntake.addEventListener('submit', function(e){
-      e.preventDefault();
-      var btn = shopIntake.querySelector('button[type="submit"]');
-      var btnText = btn.querySelector('.btn-text');
-      if(btnText){
-        btnText.textContent = 'Sending...';
-        btnText.setAttribute('data-text','Sending...');
-      }
-      btn.disabled = true;
-      sendForm(shopIntake, 'New Lead from Shop Page', function(){
-        if(btnText){
-          btnText.textContent = 'Sent! We\'ll be in touch.';
-          btnText.setAttribute('data-text','Sent! We\'ll be in touch.');
-        } else {
-          btn.textContent = 'Sent! We\'ll be in touch.';
-        }
-        btn.style.opacity = '.7';
-        var inputs = shopIntake.querySelectorAll('input,select,textarea');
-        for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
-      });
-    });
-  }
-
-  /* ============ PROMO BOOKING FORM (homepage) ============ */
-  var promoBook = document.getElementById('promoBookForm');
-  if(promoBook){
-    promoBook.addEventListener('submit', function(e){
-      e.preventDefault();
-      var btn = promoBook.querySelector('button[type="submit"]');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      sendForm(promoBook, 'Free Consult Request (Homepage)', function(){
-        btn.textContent = 'Booked! We\'ll call you soon.';
-        btn.style.opacity = '.7';
-        var inputs = promoBook.querySelectorAll('input');
-        for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
-      });
-    });
   }
 
   /* ============ EMAIL CAPTURE ============ */

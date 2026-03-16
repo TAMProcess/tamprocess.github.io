@@ -252,7 +252,7 @@ button{cursor:pointer}
 .industry-pill-icon{line-height:0}
 
 /* ---------- STATS BAR ---------- */
-.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;text-align:center;padding:1.5rem 0}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;text-align:center;padding:1.5rem 0}
 .stat-item{}
 .stat-num{font-family:var(--font-display);font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
 .stat-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim)}
