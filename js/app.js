@@ -153,7 +153,7 @@
         '<polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/>',
         '<polygon points="12,2 20,7 20,17 12,22 4,17 4,7"/>'
       ];
-      var colors = ['rgba(0,212,255,C)','rgba(123,47,255,C)','rgba(255,0,110,C)','rgba(0,255,170,C)'];
+      var colors = ['#00d4ff','#7b2fff','#ff006e','#00ffaa'];
       var trails = [];
       for(var ti=0;ti<trailCount;ti++){
         var size = 6 + Math.random()*28;
@@ -161,10 +161,11 @@
         el.className = 'cursor-trail';
         el.style.width = size+'px';
         el.style.height = size+'px';
-        var c = colors[ti%colors.length].replace('C', (0.08 + Math.random()*0.14).toFixed(2));
-        el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1">'+svgShapes[ti%svgShapes.length]+'</svg>';
+        var c = colors[ti%colors.length];
+        var baseOp = 0.35 + Math.random()*0.35;
+        el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5">'+svgShapes[ti%svgShapes.length]+'</svg>';
         document.body.appendChild(el);
-        trails.push({el:el, x:0, y:0, lag:.04+ti*.012, rot:Math.random()*360, rs:(Math.random()-.5)*1.2});
+        trails.push({el:el, x:0, y:0, lag:.04+ti*.012, rot:Math.random()*360, rs:(Math.random()-.5)*1.2, baseOp:baseOp});
       }
 
       (function moveCur(){
@@ -176,7 +177,7 @@
           tr.y+=(cy-tr.y)*tr.lag;
           tr.rot+=tr.rs;
           var dx=cx-tr.x,dy=cy-tr.y,dist=Math.sqrt(dx*dx+dy*dy);
-          var op=Math.min(dist/120,1)*parseFloat(tr.el.querySelector('svg').getAttribute('stroke').match(/[\d.]+(?=\))/)[0]||.12)*4;
+          var op=Math.min(dist/80,1)*tr.baseOp;
           tr.el.style.left=tr.x+'px';
           tr.el.style.top=tr.y+'px';
           tr.el.style.opacity=op;
