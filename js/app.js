@@ -567,6 +567,26 @@
     showStep(0);
   }
 
+  /* ============ SHOP INTAKE FORM ============ */
+  var shopIntake = document.getElementById('shopIntakeForm');
+  if(shopIntake){
+    shopIntake.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = shopIntake.querySelector('button[type="submit"]');
+      var btnText = btn.querySelector('.btn-text');
+      if(btnText){
+        btnText.textContent = 'Submitted!';
+        btnText.setAttribute('data-text','Submitted!');
+      } else {
+        btn.textContent = 'Submitted!';
+      }
+      btn.style.opacity = '.7';
+      btn.disabled = true;
+      var inputs = shopIntake.querySelectorAll('input,select,textarea');
+      for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
+    });
+  }
+
   /* ============ EMAIL CAPTURE ============ */
   var emailForm = document.getElementById('emailCaptureForm');
   if(emailForm){

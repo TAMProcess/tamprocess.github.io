@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop Plans | Work Source Supply</title>
-  <meta name="description" content="Browse our website and automation plans. See real examples of what we build for businesses like yours.">
+  <meta name="description" content="Browse our website and automation plans. Tell us about your business and get a custom proposal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -33,8 +33,8 @@
   <div class="hero-inner">
     <div class="container text-center">
       <div class="section-label reveal-up">Shop Plans</div>
-      <h1 class="section-heading reveal-up" style="font-size:clamp(1.6rem,4.5vw,2.8rem)">Pick a Plan.<br><span class="accent-text">See What We Build.</span></h1>
-      <p class="section-sub centered reveal-up">Choose the plan that fits your business, then scroll down to see real examples of what your site could look like.</p>
+      <h1 class="section-heading reveal-up" style="font-size:clamp(1.6rem,4.5vw,2.8rem)">Pick a Plan.<br><span class="accent-text">Tell Us What You Need.</span></h1>
+      <p class="section-sub centered reveal-up">Choose the plan that fits your business, then fill out the form below so we can build exactly what you need.</p>
     </div>
   </div>
 
@@ -78,317 +78,75 @@
     </div>
   </section>
 
-  <!-- WEBSITE EXAMPLES -->
+  <!-- TELL US ABOUT YOUR BUSINESS -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="section-label reveal-up">Website Examples</div>
-      <h2 class="section-heading reveal-up">What Your Site <span class="accent-text">Could Look Like.</span></h2>
-      <p class="section-sub reveal-up">These are examples of real websites we build for businesses. Every site is custom — never a template.</p>
+      <div class="section-label reveal-up">Your Vision</div>
+      <h2 class="section-heading reveal-up">Tell Us About <span class="accent-text">Your Business.</span></h2>
+      <p class="section-sub reveal-up">Answer a few quick questions so we can build exactly what you need. Every site is 100% custom.</p>
 
-      <div class="site-examples-grid">
+      <div class="intake-form-wrap glass reveal-up">
+        <form class="intake-form" id="shopIntakeForm">
+          <div class="intake-row">
+            <div class="intake-field">
+              <label for="bizName">Business Name</label>
+              <input type="text" id="bizName" name="bizName" placeholder="e.g. Fresh Kitchen, Summit Construction" required>
+            </div>
+            <div class="intake-field">
+              <label for="bizIndustry">Industry</label>
+              <select id="bizIndustry" name="bizIndustry" required>
+                <option value="" disabled selected>Select your industry</option>
+                <option value="restaurant">Restaurant / Food & Beverage</option>
+                <option value="contractor">Contractor / Construction</option>
+                <option value="realestate">Real Estate</option>
+                <option value="law">Law Firm / Legal</option>
+                <option value="salon">Salon / Spa / Beauty</option>
+                <option value="medical">Medical / Healthcare</option>
+                <option value="ecommerce">E-Commerce / Retail</option>
+                <option value="fitness">Fitness / Gym</option>
+                <option value="photography">Photography / Creative</option>
+                <option value="insurance">Insurance / Finance</option>
+                <option value="automotive">Automotive</option>
+                <option value="consulting">Consulting / Agency</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
 
-        <!-- Restaurant -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div class="pv-nav"><span class="pv-nav-dot active"></span><span class="pv-nav-dot"></span><span class="pv-nav-dot"></span><span class="pv-nav-dot"></span></div>
-              <div class="pv-hero" style="height:32%;background:linear-gradient(135deg,#ff6b35,#ff006e)"><span class="pv-hero-text">Fresh Kitchen</span></div>
-              <div class="pv-menu-grid">
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#8B4513,#D2691E)"></div><div class="pv-menu-name">Wagyu Burger</div><div class="pv-menu-price">$18</div></div>
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#2E8B57,#90EE90)"></div><div class="pv-menu-name">Garden Bowl</div><div class="pv-menu-price">$14</div></div>
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#DAA520,#FFD700)"></div><div class="pv-menu-name">Truffle Pasta</div><div class="pv-menu-price">$22</div></div>
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#CD853F,#DEB887)"></div><div class="pv-menu-name">Crème Brûlée</div><div class="pv-menu-price">$12</div></div>
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#B22222,#FF6347)"></div><div class="pv-menu-name">Lobster Roll</div><div class="pv-menu-price">$26</div></div>
-                <div class="pv-menu-item"><div class="pv-menu-img" style="background:linear-gradient(135deg,#FF8C00,#FFA07A)"></div><div class="pv-menu-name">Salmon Poke</div><div class="pv-menu-price">$16</div></div>
-              </div>
-              <div class="pv-order-bar"><span>🛒 3 items · $54</span><div class="pv-btn" style="width:35%;height:7px;margin:0;background:linear-gradient(90deg,#ff6b35,#ff006e);font-size:4px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">Order Now</div></div>
-            </div></div>
+          <div class="intake-field">
+            <label>What do you need? <span class="intake-hint">Select all that apply</span></label>
+            <div class="intake-checks">
+              <label class="intake-check"><input type="checkbox" name="needs" value="website"><span class="intake-check-box"></span>Professional Website</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="booking"><span class="intake-check-box"></span>Online Booking</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="crm"><span class="intake-check-box"></span>CRM / Lead Capture</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="ecommerce"><span class="intake-check-box"></span>Online Store</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="automation"><span class="intake-check-box"></span>Email / Text Automation</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="ai"><span class="intake-check-box"></span>AI Chat / Assistant</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="seo"><span class="intake-check-box"></span>SEO & Google Ranking</label>
+              <label class="intake-check"><input type="checkbox" name="needs" value="social"><span class="intake-check-box"></span>Social Media Integration</label>
+            </div>
           </div>
-          <div class="site-example-info">
-            <h4>Fresh Kitchen</h4>
-            <p>Restaurant with online ordering, reservations & menu management</p>
-            <span class="site-example-tag">Restaurant</span>
-          </div>
-        </div>
 
-        <!-- Contractor -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div class="pv-hero" style="height:36%;background:linear-gradient(135deg,#ff9500 0%,#ff6b00 50%,rgba(0,0,0,.6) 100%)"><span class="pv-hero-text">Summit<br>Construction</span></div>
-              <div class="pv-project-gallery">
-                <div class="pv-project-main" style="background:linear-gradient(135deg,#5a3e2b,#8B7355)"></div>
-                <div class="pv-project-stack"><div class="pv-project-thumb" style="background:linear-gradient(135deg,#4a6741,#7a9970)"></div><div class="pv-project-thumb" style="background:linear-gradient(135deg,#6b5b45,#a89070)"></div></div>
-              </div>
-              <div class="pv-stats-row">
-                <div class="pv-stat-box"><span class="pv-stat-num" style="color:#ff9500">200+</span><span class="pv-stat-lbl">Projects</span></div>
-                <div class="pv-stat-box"><span class="pv-stat-num" style="color:#ff9500">15</span><span class="pv-stat-lbl">Years Exp</span></div>
-                <div class="pv-stat-box"><span class="pv-stat-num" style="color:#ff9500">5★</span><span class="pv-stat-lbl">Rating</span></div>
-              </div>
-              <div class="pv-btn" style="width:60%;height:8px;background:linear-gradient(90deg,#ff9500,#ff6b00);display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff;font-weight:700">Get Free Quote</div>
-            </div></div>
+          <div class="intake-field">
+            <label for="bizUrl">Current Website <span class="intake-hint">optional</span></label>
+            <input type="url" id="bizUrl" name="bizUrl" placeholder="https://yoursite.com">
           </div>
-          <div class="site-example-info">
-            <h4>Summit Construction</h4>
-            <p>Contractor site with project gallery, quote requests & scheduling</p>
-            <span class="site-example-tag">Contractor</span>
-          </div>
-        </div>
 
-        <!-- Real Estate -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div class="pv-nav"><span class="pv-nav-dot active"></span><span class="pv-nav-dot"></span><span class="pv-nav-dot"></span><span style="margin-left:auto;font-size:4px;color:rgba(255,255,255,.35)">Login</span></div>
-              <div style="display:flex;gap:2px;margin-bottom:4px">
-                <div style="flex:1;height:8px;background:rgba(255,255,255,.04);border-radius:3px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;padding:0 4px;font-size:3.5px;color:rgba(255,255,255,.2)">Search city, zip, neighborhood...</div>
-                <div style="width:18px;height:8px;background:linear-gradient(90deg,#00b4d8,#0077b6);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff">🔍</div>
-              </div>
-              <div class="pv-listings">
-                <div class="pv-listing"><div class="pv-listing-img" style="background:linear-gradient(135deg,#2c5f7c,#4a90b8)"><span class="pv-badge" style="position:absolute;top:2px;left:2px;background:#00b4d8;color:#fff">NEW</span></div><div class="pv-listing-body"><div class="pv-listing-price" style="color:#00b4d8">$1.2M</div><div class="pv-listing-addr">4 bd · 3 ba · 2,800 sqft</div><div class="pv-listing-tags"><span class="pv-listing-tag">Pool</span><span class="pv-listing-tag">View</span></div></div></div>
-                <div class="pv-listing"><div class="pv-listing-img" style="background:linear-gradient(135deg,#5c4033,#8B6914)"><span class="pv-badge" style="position:absolute;top:2px;left:2px;background:#ff006e;color:#fff">HOT</span></div><div class="pv-listing-body"><div class="pv-listing-price" style="color:#00b4d8">$875K</div><div class="pv-listing-addr">3 bd · 2 ba · 1,950 sqft</div><div class="pv-listing-tags"><span class="pv-listing-tag">Garage</span><span class="pv-listing-tag">New</span></div></div></div>
-              </div>
-              <div style="text-align:center;font-size:3.5px;color:rgba(255,255,255,.25);margin-top:3px">Showing 2 of 147 listings</div>
-            </div></div>
+          <div class="intake-field">
+            <label for="bizDesc">Tell us more about your business</label>
+            <textarea id="bizDesc" name="bizDesc" rows="3" placeholder="What does your business do? What problems are you trying to solve? Any features you have in mind?"></textarea>
           </div>
-          <div class="site-example-info">
-            <h4>Luxe Real Estate</h4>
-            <p>Property listings, virtual tours, agent profiles & lead capture</p>
-            <span class="site-example-tag">Real Estate</span>
-          </div>
-        </div>
 
-        <!-- Law Firm -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content" style="background:linear-gradient(180deg,#0d0d1a,#1a1a2e)">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px"><span style="font-family:var(--font-heading);font-size:6px;font-weight:700;color:#e2b04a;letter-spacing:.5px">Carter &amp; Associates</span><span style="font-size:3.5px;color:rgba(255,255,255,.25)">EST. 1987</span></div>
-              <div class="pv-divider" style="background:rgba(226,176,74,.15)"></div>
-              <div class="pv-split">
-                <div class="pv-sidebar"><div class="pv-sidebar-item active">Corporate Law</div><div class="pv-sidebar-item">Real Estate</div><div class="pv-sidebar-item">Litigation</div><div class="pv-sidebar-item">Estate Planning</div></div>
-                <div class="pv-main-content">
-                  <div style="font-size:5px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:2px">Trusted Legal Counsel</div>
-                  <div class="pv-text med"></div><div class="pv-text"></div><div class="pv-text short"></div>
-                  <div class="pv-testimonial">"Carter & Associates handled our merger flawlessly."</div>
-                  <div style="display:flex;align-items:center;gap:3px;margin-top:2px"><div class="pv-stars">★★★★★</div><span style="font-size:3px;color:rgba(255,255,255,.2)">— Fortune 500 CEO</span></div>
-                </div>
-              </div>
-              <div class="pv-btn" style="width:50%;height:8px;background:linear-gradient(90deg,#e2b04a,#c8963e);display:flex;align-items:center;justify-content:center;font-size:4px;color:#0d0d1a;font-weight:700;margin-top:4px">Book Consultation</div>
-            </div></div>
+          <div class="intake-field">
+            <label for="bizEmail">Your Email</label>
+            <input type="email" id="bizEmail" name="bizEmail" placeholder="you@business.com" required>
           </div>
-          <div class="site-example-info">
-            <h4>Carter & Associates</h4>
-            <p>Practice area pages, consultation booking & client portal</p>
-            <span class="site-example-tag">Law Firm</span>
-          </div>
-        </div>
 
-        <!-- Salon/Spa -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-family:var(--font-heading);font-size:7px;font-weight:700;color:#e96989">Glow Studio</span><span class="pv-badge" style="background:rgba(233,105,137,.12);color:#e96989">Book Now</span></div>
-              <div class="pv-services-row"><span class="pv-service-pill active">Haircut</span><span class="pv-service-pill">Color</span><span class="pv-service-pill">Facial</span><span class="pv-service-pill">Nails</span><span class="pv-service-pill">Massage</span></div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin-bottom:2px">Available times — Dec 14</div>
-              <div class="pv-booking-grid">
-                <div class="pv-time-slot open">9:00</div><div class="pv-time-slot booked">9:30</div><div class="pv-time-slot open">10:00</div><div class="pv-time-slot booked">10:30</div>
-                <div class="pv-time-slot open">11:00</div><div class="pv-time-slot open">11:30</div><div class="pv-time-slot booked">12:00</div><div class="pv-time-slot open">1:00</div>
-              </div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin:3px 0 2px">Our stylists</div>
-              <div class="pv-stylist-row">
-                <div class="pv-stylist"><div class="pv-stylist-avatar" style="background:linear-gradient(135deg,#e96989,#f8a4b8)"></div><div class="pv-stylist-name">Sofia</div></div>
-                <div class="pv-stylist"><div class="pv-stylist-avatar" style="background:linear-gradient(135deg,#c060a1,#e0a0c8)"></div><div class="pv-stylist-name">Mia</div></div>
-                <div class="pv-stylist"><div class="pv-stylist-avatar" style="background:linear-gradient(135deg,#9b59b6,#c39bd3)"></div><div class="pv-stylist-name">Jade</div></div>
-                <div class="pv-stylist"><div class="pv-stylist-avatar" style="background:linear-gradient(135deg,#e96989,#d4a0b0)"></div><div class="pv-stylist-name">Ava</div></div>
-              </div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Glow Studio</h4>
-            <p>Service menu, online booking, stylist profiles & review integration</p>
-            <span class="site-example-tag">Salon & Spa</span>
-          </div>
-        </div>
-
-        <!-- Fitness -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content" style="background:linear-gradient(180deg,#050510,#0a0a1a)">
-              <div class="pv-hero" style="height:28%;background:linear-gradient(135deg,#00ff87,#60efff)"><span class="pv-hero-text" style="color:#050510;font-size:7px">IRON CORE<br>FITNESS</span></div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin:3px 0 2px">Today's classes</div>
-              <div class="pv-schedule">
-                <div class="pv-class" style="border-left-color:#00ff87"><span class="pv-class-time">6AM</span><span class="pv-class-name" style="color:#00ff87">HIIT Burn</span><span class="pv-class-spots hot">2 left</span></div>
-                <div class="pv-class" style="border-left-color:#60efff"><span class="pv-class-time">8AM</span><span class="pv-class-name">Yoga Flow</span><span class="pv-class-spots">5 spots</span></div>
-                <div class="pv-class" style="border-left-color:#00ff87"><span class="pv-class-time">12PM</span><span class="pv-class-name">Strength</span><span class="pv-class-spots">8 spots</span></div>
-                <div class="pv-class" style="border-left-color:#60efff"><span class="pv-class-time">5PM</span><span class="pv-class-name" style="color:#60efff">Spin</span><span class="pv-class-spots hot">1 left</span></div>
-              </div>
-              <div class="pv-progress-row">
-                <div class="pv-progress-item"><div class="pv-progress-ring" style="color:#00ff87"></div><div class="pv-progress-lbl">Cardio</div></div>
-                <div class="pv-progress-item"><div class="pv-progress-ring" style="color:#60efff"></div><div class="pv-progress-lbl">Strength</div></div>
-                <div class="pv-progress-item"><div class="pv-progress-ring" style="color:#00ff87"></div><div class="pv-progress-lbl">Recovery</div></div>
-              </div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Iron Core Fitness</h4>
-            <p>Class schedules, membership sign-up, trainer bios & progress tracking</p>
-            <span class="site-example-tag">Fitness</span>
-          </div>
-        </div>
-
-        <!-- E-commerce -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px"><span style="font-family:var(--font-heading);font-size:6px;font-weight:700;color:rgba(255,255,255,.6)">MINML</span><span style="font-size:4px;color:rgba(255,255,255,.25)">🛒 2</span></div>
-              <div class="pv-services-row" style="margin:0 0 3px"><span class="pv-service-pill active" style="border-color:rgba(123,47,255,.4);color:rgba(123,47,255,.9);background:rgba(123,47,255,.08)">All</span><span class="pv-service-pill">Tops</span><span class="pv-service-pill">Pants</span><span class="pv-service-pill">Shoes</span><span class="pv-service-pill">Bags</span></div>
-              <div class="pv-products">
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#2a1f4e,#4a3f7e)"></div><div class="pv-product-body"><div class="pv-product-name">Merino Tee</div><div class="pv-product-price" style="color:#7b2fff">$48</div></div></div>
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#1a3a4a,#2a5a7a)"><span class="pv-badge" style="position:absolute;top:1px;left:1px;background:#ff006e;color:#fff;font-size:3px">SALE</span></div><div class="pv-product-body"><div class="pv-product-name">Slim Chinos</div><div class="pv-product-price" style="color:#7b2fff">$62<span class="pv-product-old">$89</span></div></div></div>
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#3a2a1a,#6a5a4a)"></div><div class="pv-product-body"><div class="pv-product-name">Canvas Bag</div><div class="pv-product-price" style="color:#7b2fff">$35</div></div></div>
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#1f1f3a,#3f3f6a)"></div><div class="pv-product-body"><div class="pv-product-name">Wool Hoodie</div><div class="pv-product-price" style="color:#7b2fff">$95</div></div></div>
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#4a3520,#7a6550)"><span class="pv-badge" style="position:absolute;top:1px;left:1px;background:#00d4ff;color:#050510;font-size:3px">NEW</span></div><div class="pv-product-body"><div class="pv-product-name">Leather Belt</div><div class="pv-product-price" style="color:#7b2fff">$42</div></div></div>
-                <div class="pv-product"><div class="pv-product-img" style="background:linear-gradient(135deg,#2a2a3a,#5a5a7a)"></div><div class="pv-product-body"><div class="pv-product-name">Linen Shirt</div><div class="pv-product-price" style="color:#7b2fff">$58</div></div></div>
-              </div>
-              <div class="pv-cart-bar" style="background:rgba(123,47,255,.08);border:1px solid rgba(123,47,255,.2)"><span>2 items · $110</span><div class="pv-btn" style="width:30%;height:7px;margin:0;background:linear-gradient(90deg,#7b2fff,#00d4ff);font-size:3.5px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border-radius:3px">Checkout</div></div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Minimalist Shop</h4>
-            <p>Product catalog, checkout, inventory management & email marketing</p>
-            <span class="site-example-tag">E-Commerce</span>
-          </div>
-        </div>
-
-        <!-- Medical -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div class="pv-dash-header"><span style="color:#00b894">ClearPath Medical</span><span class="pv-badge" style="background:rgba(0,184,148,.1);color:#00b894">Patient Portal</span></div>
-              <div class="pv-dash-cards">
-                <div class="pv-dash-card"><div class="pv-dash-card-icon">🩺</div><span class="pv-dash-card-num" style="color:#00b894">3</span><div class="pv-dash-card-lbl">Upcoming</div></div>
-                <div class="pv-dash-card"><div class="pv-dash-card-icon">💊</div><span class="pv-dash-card-num" style="color:#00cec9">2</span><div class="pv-dash-card-lbl">Refills</div></div>
-                <div class="pv-dash-card"><div class="pv-dash-card-icon">📋</div><span class="pv-dash-card-num" style="color:#00b894">5</span><div class="pv-dash-card-lbl">Reports</div></div>
-              </div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin-bottom:2px">Today's appointments</div>
-              <div class="pv-appt-list">
-                <div class="pv-appt"><span class="pv-appt-dot" style="background:#00b894"></span>Dr. Williams — Annual Checkup<span class="pv-appt-time">9:00 AM</span></div>
-                <div class="pv-appt"><span class="pv-appt-dot" style="background:#00cec9"></span>Lab Results — Blood Panel<span class="pv-appt-time">11:30 AM</span></div>
-                <div class="pv-appt"><span class="pv-appt-dot" style="background:rgba(255,255,255,.15)"></span>Dr. Chen — Follow-up<span class="pv-appt-time">2:00 PM</span></div>
-              </div>
-              <div class="pv-btn" style="width:55%;height:8px;background:linear-gradient(90deg,#00b894,#00cec9);display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff;font-weight:700;margin-top:4px">Schedule Visit</div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>ClearPath Medical</h4>
-            <p>Patient portal, appointment booking, provider directory & forms</p>
-            <span class="site-example-tag">Medical</span>
-          </div>
-        </div>
-
-        <!-- Photography — gallery grid layout -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-family:var(--font-heading);font-size:6px;font-weight:700;color:#fdcb6e">Shutter & Co.</span><span class="pv-badge" style="background:rgba(253,203,110,.1);color:#fdcb6e">Book Session</span></div>
-              <div class="pv-services-row"><span class="pv-service-pill active" style="border-color:rgba(253,203,110,.4);color:#fdcb6e;background:rgba(253,203,110,.08)">Portfolio</span><span class="pv-service-pill">Weddings</span><span class="pv-service-pill">Portraits</span><span class="pv-service-pill">Events</span></div>
-              <div class="pv-gallery">
-                <div class="pv-gallery-item span2" style="background:linear-gradient(135deg,#2d3436,#636e72)"></div>
-                <div class="pv-gallery-item" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe)"></div>
-                <div class="pv-gallery-item" style="background:linear-gradient(135deg,#e17055,#fdcb6e)"></div>
-                <div class="pv-gallery-item" style="background:linear-gradient(135deg,#00b894,#55efc4)"></div>
-                <div class="pv-gallery-item" style="background:linear-gradient(135deg,#d63031,#ff7675)"></div>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:3px"><div class="pv-stars">★★★★★</div><span style="font-size:3.5px;color:rgba(255,255,255,.25)">280+ sessions booked</span></div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Shutter & Co.</h4>
-            <p>Portfolio gallery, session booking, client proofing & print shop</p>
-            <span class="site-example-tag">Photography</span>
-          </div>
-        </div>
-
-        <!-- Insurance — plan comparison layout -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content" style="background:linear-gradient(180deg,#0a1628,#162040)">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-family:var(--font-heading);font-size:6px;font-weight:700;color:#00d4ff">Shield Insurance</span><span style="font-size:3.5px;color:rgba(255,255,255,.25)">Get Protected</span></div>
-              <div class="pv-divider" style="background:rgba(0,212,255,.1)"></div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin:3px 0">Compare plans</div>
-              <div class="pv-compare">
-                <div class="pv-plan"><div class="pv-plan-name">Basic</div><span class="pv-plan-price" style="color:#00d4ff">$29</span><div class="pv-plan-feat">✓ Liability<br>✓ Property<br>✗ Umbrella</div></div>
-                <div class="pv-plan featured"><div class="pv-plan-name" style="color:#00d4ff">Premium</div><span class="pv-plan-price" style="color:#00d4ff">$59</span><div class="pv-plan-feat">✓ Liability<br>✓ Property<br>✓ Umbrella</div></div>
-                <div class="pv-plan"><div class="pv-plan-name">Business</div><span class="pv-plan-price" style="color:#00d4ff">$99</span><div class="pv-plan-feat">✓ Everything<br>✓ Workers Comp<br>✓ Fleet</div></div>
-              </div>
-              <div class="pv-btn" style="width:55%;height:8px;background:linear-gradient(90deg,#00d4ff,#0077b6);display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff;font-weight:700;margin-top:3px">Get a Free Quote</div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Shield Insurance</h4>
-            <p>Quote calculator, policy comparison & claims portal</p>
-            <span class="site-example-tag">Insurance</span>
-          </div>
-        </div>
-
-        <!-- Auto — service menu layout -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content">
-              <div class="pv-hero" style="height:28%;background:linear-gradient(135deg,#d63031,#e17055)"><span class="pv-hero-text" style="font-size:7px">ELITE AUTO<br>SERVICE</span></div>
-              <div style="font-size:4px;color:rgba(255,255,255,.3);margin:3px 0 2px">Popular services</div>
-              <div class="pv-service-list">
-                <div class="pv-service-item"><div class="pv-service-icon" style="background:rgba(214,48,49,.15)">🔧</div><div class="pv-service-info"><div class="pv-service-title">Oil Change</div><div class="pv-service-desc">Full synthetic, filter included</div></div><div class="pv-service-price" style="color:#e17055">$49</div></div>
-                <div class="pv-service-item"><div class="pv-service-icon" style="background:rgba(214,48,49,.15)">🛞</div><div class="pv-service-info"><div class="pv-service-title">Brake Inspection</div><div class="pv-service-desc">Pads, rotors & fluid check</div></div><div class="pv-service-price" style="color:#e17055">$79</div></div>
-                <div class="pv-service-item"><div class="pv-service-icon" style="background:rgba(214,48,49,.15)">⚡</div><div class="pv-service-info"><div class="pv-service-title">Diagnostics</div><div class="pv-service-desc">Full OBD-II scan</div></div><div class="pv-service-price" style="color:#e17055">$35</div></div>
-              </div>
-              <div class="pv-btn" style="width:60%;height:8px;background:linear-gradient(90deg,#d63031,#e17055);display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff;font-weight:700;margin-top:3px">Book Appointment</div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Elite Auto Service</h4>
-            <p>Service scheduling, vehicle history, estimates & customer reviews</p>
-            <span class="site-example-tag">Automotive</span>
-          </div>
-        </div>
-
-        <!-- Consulting — KPIs + case study -->
-        <div class="site-example reveal-up">
-          <div class="site-example-preview">
-            <div class="preview-browser-bar"><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span><span class="preview-browser-dot"></span></div>
-            <div class="preview-site"><div class="preview-site-content" style="background:linear-gradient(180deg,#0f0a1e,#1a1030)">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-family:var(--font-heading);font-size:6px;font-weight:700;color:#a29bfe">Apex Consulting</span><span class="pv-badge" style="background:rgba(162,155,254,.1);color:#a29bfe">Let's Talk</span></div>
-              <div class="pv-kpi-row">
-                <div class="pv-kpi" style="border-top-color:#6c5ce7"><span class="pv-kpi-val" style="color:#6c5ce7">340%</span><span class="pv-kpi-lbl">Avg ROI</span></div>
-                <div class="pv-kpi" style="border-top-color:#a29bfe"><span class="pv-kpi-val" style="color:#a29bfe">92</span><span class="pv-kpi-lbl">NPS Score</span></div>
-                <div class="pv-kpi" style="border-top-color:#6c5ce7"><span class="pv-kpi-val" style="color:#6c5ce7">150+</span><span class="pv-kpi-lbl">Clients</span></div>
-              </div>
-              <div class="pv-case-study">
-                <div class="pv-case-title">Case Study: TechCorp Rebrand</div>
-                <div class="pv-case-result">↑ 180% brand awareness in 6 months<br>↑ $2.4M incremental revenue<br>↓ 35% customer acquisition cost</div>
-              </div>
-              <div class="pv-testimonial" style="border-left-color:rgba(162,155,254,.3)">"Apex transformed our go-to-market strategy completely."</div>
-              <div class="pv-btn" style="width:55%;height:8px;background:linear-gradient(90deg,#6c5ce7,#a29bfe);display:flex;align-items:center;justify-content:center;font-size:4px;color:#fff;font-weight:700;margin-top:3px">Book Discovery Call</div>
-            </div></div>
-          </div>
-          <div class="site-example-info">
-            <h4>Apex Consulting</h4>
-            <p>Case studies, booking system, team profiles & thought leadership blog</p>
-            <span class="site-example-tag">Consulting</span>
-          </div>
-        </div>
-
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:.5rem">
+            <span class="btn-text" data-text="Submit &amp; Get Your Custom Plan">Submit &amp; Get Your Custom Plan</span>
+          </button>
+          <p class="intake-privacy">We'll respond within 24 hours with a custom proposal. No spam, no pressure.</p>
+        </form>
       </div>
     </div>
   </section>
