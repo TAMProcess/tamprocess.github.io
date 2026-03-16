@@ -439,6 +439,36 @@
       '8:00 PM','8:30 PM','9:00 PM','9:30 PM','10:00 PM'
     ];
 
+    /* ---------- BOOKING PERSISTENCE ---------- */
+    var BOOKINGS_API = ''; // Paste your Google Apps Script web app URL here
+    var bookedSlots = {}; // { "2026-03-20": ["10:00 AM", "2:30 PM"] }
+
+    function dateKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+    function fetchBookedSlots(cb){
+      if(!BOOKINGS_API){ if(cb) cb(); return; }
+      fetch(BOOKINGS_API)
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          bookedSlots = {};
+          data.forEach(function(b){
+            if(!bookedSlots[b.date]) bookedSlots[b.date] = [];
+            bookedSlots[b.date].push(b.time);
+          });
+          if(cb) cb();
+        })
+        .catch(function(){ if(cb) cb(); });
+    }
+
+    function saveBooking(dateStr, time, name, email){
+      if(!BOOKINGS_API) return;
+      fetch(BOOKINGS_API, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({date:dateStr,time:time,name:name||'',email:email||''})
+      }).catch(function(){});
+    }
+
     /* Auto-detect user timezone */
     var tzSelect = document.getElementById('sch-tz');
     if(tzSelect){
@@ -502,11 +532,14 @@
       if(!timeslots || !grid) return;
       timeslots.style.display = 'block';
       dateText.textContent = selectedDate.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
+      var dk = dateKey(selectedDate);
+      var taken = bookedSlots[dk] || [];
       grid.innerHTML = availableTimes.map(function(t){
-        var cls = 'timeslot' + (selectedTime === t ? ' selected' : '');
-        return '<div class="' + cls + '" data-time="' + t + '">' + t + '</div>';
+        var isBooked = taken.indexOf(t) !== -1;
+        var cls = 'timeslot' + (isBooked ? ' booked' : '') + (selectedTime === t ? ' selected' : '');
+        return '<div class="' + cls + '" data-time="' + t + '">' + t + (isBooked ? ' \u2717' : '') + '</div>';
       }).join('');
-      grid.querySelectorAll('.timeslot').forEach(function(el){
+      grid.querySelectorAll('.timeslot:not(.booked)').forEach(function(el){
         el.addEventListener('click', function(){
           selectedTime = el.getAttribute('data-time');
           grid.querySelectorAll('.timeslot').forEach(function(s){ s.classList.remove('selected'); });
@@ -544,6 +577,7 @@
       calMonth++; if(calMonth > 11){ calMonth = 0; calYear++; } renderCalendar();
     });
     renderCalendar();
+    fetchBookedSlots(function(){ if(selectedDate) showTimeslots(); });
 
     var scheduleForm = document.getElementById('scheduleForm');
     if(scheduleForm){
@@ -570,6 +604,11 @@
         btn.textContent = 'Booking...';
         btn.disabled = true;
         sendForm(scheduleForm, 'New Consultation Booking', function(){
+          /* Save booking so the slot becomes unavailable */
+          var dk = dateKey(selectedDate);
+          if(!bookedSlots[dk]) bookedSlots[dk] = [];
+          bookedSlots[dk].push(selectedTime);
+          saveBooking(dk, selectedTime, scheduleForm.querySelector('[name="name"]').value, scheduleForm.querySelector('[name="email"]').value);
           scheduleForm.style.display = 'none';
           var success = document.getElementById('scheduleSuccess');
           if(success) success.style.display = 'block';
