@@ -144,7 +144,7 @@
       document.addEventListener('mousemove',function(e){cx=e.clientX;cy=e.clientY;});
 
       /* --- trail shapes --- */
-      var trailCount = 75;
+      var trailCount = 30;
       var svgShapes = [
         '<polygon points="12,2 22,22 2,22"/>',
         '<rect x="3" y="3" width="18" height="18" transform="rotate(45 12 12)"/>',
@@ -156,8 +156,6 @@
       var colors = ['#00d4ff','#7b2fff','#ff006e','#00ffaa'];
       var trails = [];
       for(var ti=0;ti<trailCount;ti++){
-        var t = ti/trailCount;
-        // Small shapes: 3-10px, mixed sizes for particle cloud feel
         var size = 3 + Math.random()*7;
         var el = document.createElement('div');
         el.className = 'cursor-trail';
@@ -167,34 +165,32 @@
         var baseOp = 0.45 + Math.random()*0.4;
         el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="2">'+svgShapes[ti%svgShapes.length]+'</svg>';
         document.body.appendChild(el);
-        // Tight cloud: all shapes follow fairly close, slight variation in lag
         var lagVal = 0.08 + Math.random()*0.10;
-        // Random offset for cloud scatter instead of strict V
         var angle = Math.random()*Math.PI*2;
         var scatter = Math.random();
-        trails.push({el:el, x:0, y:0, lag:lagVal, rot:Math.random()*360, rx:Math.random()*360, ry:Math.random()*360,
-          rs:(Math.random()-.5)*1.5, rxs:(Math.random()-.5)*1.0, rys:(Math.random()-.5)*0.8,
+        trails.push({el:el, x:0, y:0, lag:lagVal, rot:Math.random()*360,
+          rs:(Math.random()-.5)*1.5,
           baseOp:baseOp, angle:angle, scatter:scatter, size:size});
       }
 
+      var curMoving = false, curTimer = 0;
+      document.addEventListener('mousemove',function(){curMoving=true;clearTimeout(curTimer);curTimer=setTimeout(function(){curMoving=false;},120);});
+
       (function moveCur(){
         requestAnimationFrame(moveCur);
-        cur.style.left=cx+'px';cur.style.top=cy+'px';
+        cur.style.transform='translate3d('+cx+'px,'+cy+'px,0)';
         for(var i=0;i<trails.length;i++){
           var tr=trails[i];
           tr.x+=(cx-tr.x)*tr.lag;
           tr.y+=(cy-tr.y)*tr.lag;
-          tr.rot+=tr.rs; tr.rx+=tr.rxs; tr.ry+=tr.rys;
+          tr.rot+=tr.rs;
           var dx=cx-tr.x,dy=cy-tr.y,dist=Math.sqrt(dx*dx+dy*dy);
-          // Particle cloud: scatter outward from trail position based on distance
           var cloudRadius = dist*0.15*tr.scatter;
           var ox = tr.x + Math.cos(tr.angle)*cloudRadius;
           var oy = tr.y + Math.sin(tr.angle)*cloudRadius;
-          var op=Math.min(dist/40,1)*tr.baseOp;
-          tr.el.style.left=ox+'px';
-          tr.el.style.top=oy+'px';
+          var op = curMoving ? Math.min(dist/40,1)*tr.baseOp : 0;
+          tr.el.style.transform='translate3d('+ox+'px,'+oy+'px,0) rotate('+tr.rot+'deg)';
           tr.el.style.opacity=op;
-          tr.el.style.transform='translate(-50%,-50%) perspective(400px) rotateX('+tr.rx+'deg) rotateY('+tr.ry+'deg) rotateZ('+tr.rot+'deg)';
         }
       })();
 
