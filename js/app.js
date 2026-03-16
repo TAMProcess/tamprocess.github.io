@@ -432,19 +432,6 @@
     },3200);
   }
 
-  /* ============ BLUEPRINT FORM ============ */
-  var bpForm = document.getElementById('blueprintForm');
-  if(bpForm){
-    bpForm.addEventListener('submit',function(e){
-      e.preventDefault();
-      sendForm(bpForm, 'New Website Request', function(){
-        bpForm.style.display='none';
-        var success = document.getElementById('formSuccess');
-        if(success) success.style.display='block';
-      });
-    });
-  }
-
   /* ============ INDUSTRY PAGE DATA ============ */
   if(typeof INDUSTRY_DATA!=='undefined' && document.getElementById('industryContent')){
     var params = new URLSearchParams(location.search);
