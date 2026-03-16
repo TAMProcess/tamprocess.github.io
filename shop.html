@@ -24,7 +24,8 @@
         <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="examples.html" class="nav-link">Examples</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="shop.html" class="nav-link nav-link--cta magnetic-btn"><span class="btn-text" data-text="Shop Now">Shop Now</span></a>
+        <a href="tel:7577998535" class="nav-link nav-link--phone"><span class="nav-phone-icon">&#128222;</span> Call Now</a>
+        <a href="schedule.html" class="nav-link nav-link--cta magnetic-btn"><span class="btn-text" data-text="Book a Free Consult">Book a Free Consult</span></a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -60,7 +61,7 @@
             <p>Full automation system + CRM + AI tools</p>
           </div>
           <div class="shop-tier-price">
-            <span class="amount">$199</span>
+            <span class="amount">$399</span>
             <span class="period">+ $79.99/mo</span>
           </div>
         </a>
@@ -81,71 +82,66 @@
   <!-- TELL US ABOUT YOUR BUSINESS -->
   <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="section-label reveal-up">Your Vision</div>
-      <h2 class="section-heading reveal-up">Tell Us About <span class="accent-text">Your Business.</span></h2>
-      <p class="section-sub reveal-up">Answer a few quick questions so we can build exactly what you need. Every site is 100% custom.</p>
+      <div class="section-label reveal-up">Get In Touch</div>
+      <h2 class="section-heading reveal-up">Let's Talk About <span class="accent-text">Your Business.</span></h2>
+      <p class="section-sub reveal-up">Fill out the form and we'll reach out within 24 hours — or call us now at <a href="tel:7577998535" style="color:var(--accent-blue);white-space:nowrap">757-799-8535</a>.</p>
 
       <div class="intake-form-wrap glass reveal-up">
         <form class="intake-form" id="shopIntakeForm">
           <div class="intake-row">
             <div class="intake-field">
-              <label for="bizName">Business Name</label>
-              <input type="text" id="bizName" name="bizName" placeholder="e.g. Fresh Kitchen, Summit Construction" required>
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" name="name" placeholder="John Smith" required>
             </div>
             <div class="intake-field">
-              <label for="bizIndustry">Industry</label>
-              <select id="bizIndustry" name="bizIndustry" required>
-                <option value="" disabled selected>Select your industry</option>
-                <option value="restaurant">Restaurant / Food & Beverage</option>
-                <option value="contractor">Contractor / Construction</option>
-                <option value="realestate">Real Estate</option>
-                <option value="law">Law Firm / Legal</option>
-                <option value="salon">Salon / Spa / Beauty</option>
-                <option value="medical">Medical / Healthcare</option>
-                <option value="ecommerce">E-Commerce / Retail</option>
-                <option value="fitness">Fitness / Gym</option>
-                <option value="photography">Photography / Creative</option>
-                <option value="insurance">Insurance / Finance</option>
-                <option value="automotive">Automotive</option>
-                <option value="consulting">Consulting / Agency</option>
+              <label for="bizName">Business / Company Name</label>
+              <input type="text" id="bizName" name="business" placeholder="e.g. Fresh Kitchen LLC" required>
+            </div>
+          </div>
+
+          <div class="intake-row">
+            <div class="intake-field">
+              <label for="contactPhone">Phone Number</label>
+              <input type="tel" id="contactPhone" name="phone" placeholder="(555) 123-4567" required>
+            </div>
+            <div class="intake-field">
+              <label for="bizEmail">Email</label>
+              <input type="email" id="bizEmail" name="email" placeholder="you@business.com" required>
+            </div>
+          </div>
+
+          <div class="intake-row">
+            <div class="intake-field">
+              <label for="bizCountry">Country</label>
+              <select id="bizCountry" name="country" required>
+                <option value="" disabled selected>Select your country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="UK">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="IN">India</option>
+                <option value="BR">Brazil</option>
+                <option value="MX">Mexico</option>
                 <option value="other">Other</option>
               </select>
             </div>
-          </div>
-
-          <div class="intake-field">
-            <label>What do you need? <span class="intake-hint">Select all that apply</span></label>
-            <div class="intake-checks">
-              <label class="intake-check"><input type="checkbox" name="needs" value="website"><span class="intake-check-box"></span>Professional Website</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="booking"><span class="intake-check-box"></span>Online Booking</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="crm"><span class="intake-check-box"></span>CRM / Lead Capture</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="ecommerce"><span class="intake-check-box"></span>Online Store</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="automation"><span class="intake-check-box"></span>Email / Text Automation</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="ai"><span class="intake-check-box"></span>AI Chat / Assistant</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="seo"><span class="intake-check-box"></span>SEO & Google Ranking</label>
-              <label class="intake-check"><input type="checkbox" name="needs" value="social"><span class="intake-check-box"></span>Social Media Integration</label>
+            <div class="intake-field">
+              <label for="bizUrl">Current Website <span class="intake-hint">optional</span></label>
+              <input type="url" id="bizUrl" name="website" placeholder="https://yoursite.com">
             </div>
-          </div>
-
-          <div class="intake-field">
-            <label for="bizUrl">Current Website <span class="intake-hint">optional</span></label>
-            <input type="url" id="bizUrl" name="bizUrl" placeholder="https://yoursite.com">
           </div>
 
           <div class="intake-field">
             <label for="bizDesc">Tell us more about your business</label>
-            <textarea id="bizDesc" name="bizDesc" rows="3" placeholder="What does your business do? What problems are you trying to solve? Any features you have in mind?"></textarea>
-          </div>
-
-          <div class="intake-field">
-            <label for="bizEmail">Your Email</label>
-            <input type="email" id="bizEmail" name="bizEmail" placeholder="you@business.com" required>
+            <textarea id="bizDesc" name="message" rows="3" placeholder="What does your business do? What problems are you trying to solve? What are you looking for?"></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:.5rem">
-            <span class="btn-text" data-text="Submit &amp; Get Your Custom Plan">Submit &amp; Get Your Custom Plan</span>
+            <span class="btn-text" data-text="Let's Talk &mdash; Get In Touch">Let's Talk &mdash; Get In Touch</span>
           </button>
-          <p class="intake-privacy">We'll respond within 24 hours with a custom proposal. No spam, no pressure.</p>
+          <p class="intake-privacy">We'll reach out within 24 hours. No spam, no pressure — just a real conversation about your business.</p>
         </form>
       </div>
     </div>

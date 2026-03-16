@@ -24,7 +24,8 @@
         <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="examples.html" class="nav-link">Examples</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="shop.html" class="nav-link nav-link--cta magnetic-btn"><span class="btn-text" data-text="Shop Now">Shop Now</span></a>
+        <a href="tel:7577998535" class="nav-link nav-link--phone"><span class="nav-phone-icon">&#128222;</span> Call Now</a>
+        <a href="schedule.html" class="nav-link nav-link--cta magnetic-btn"><span class="btn-text" data-text="Book a Free Consult">Book a Free Consult</span></a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -32,9 +33,9 @@
 
   <div class="hero-inner">
     <div class="container text-center">
-      <div class="section-label reveal-up">Book a Call</div>
-      <h1 class="section-heading reveal-up" style="font-size:clamp(1.6rem,4.5vw,2.8rem)">Let's Talk About<br><span class="accent-text">Your Business.</span></h1>
-      <p class="section-sub centered reveal-up">Pick a date and time that works for you. Free 15-minute consultation — no pressure, no commitment.</p>
+      <div class="section-label reveal-up">Free Consultation</div>
+      <h1 class="section-heading reveal-up" style="font-size:clamp(1.6rem,4.5vw,2.8rem)">Book a Free Consult.<br><span class="accent-text">Any Day. Any Time.</span></h1>
+      <p class="section-sub centered reveal-up">Pick a date and time that works for you. Free consultation — no pressure, no commitment. Or call us now at <a href="tel:7577998535" style="color:var(--accent-blue)">757-799-8535</a>.</p>
     </div>
   </div>
 
@@ -56,7 +57,25 @@
           </div>
           <div class="calendar-days" id="calendarDays"></div>
           <div class="timeslots" id="timeslots" style="display:none">
-            <h4>Available Times <span id="selectedDateText" style="color:var(--accent-blue)"></span></h4>
+            <h4>Pick a Time <span id="selectedDateText" style="color:var(--accent-blue)"></span></h4>
+            <div class="form-group" style="margin-bottom:.75rem">
+              <label for="sch-tz" style="font-size:.78rem;margin-bottom:.35rem;display:block;color:var(--text-dim)">Your Timezone</label>
+              <select id="sch-tz" style="width:100%;padding:.55rem .75rem;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:var(--radius-xs);color:#fff;font-size:.82rem">
+                <option value="America/New_York">Eastern Time (ET)</option>
+                <option value="America/Chicago">Central Time (CT)</option>
+                <option value="America/Denver">Mountain Time (MT)</option>
+                <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                <option value="America/Anchorage">Alaska (AKT)</option>
+                <option value="Pacific/Honolulu">Hawaii (HST)</option>
+                <option value="Europe/London">London (GMT/BST)</option>
+                <option value="Europe/Berlin">Central Europe (CET)</option>
+                <option value="Asia/Kolkata">India (IST)</option>
+                <option value="Australia/Sydney">Sydney (AEST)</option>
+                <option value="America/Toronto">Toronto (ET)</option>
+                <option value="America/Mexico_City">Mexico City (CST)</option>
+                <option value="America/Sao_Paulo">S&atilde;o Paulo (BRT)</option>
+              </select>
+            </div>
             <div class="timeslot-grid" id="timeslotGrid"></div>
           </div>
         </div>
@@ -117,7 +136,7 @@
       <div class="glass reveal-up" style="padding:2rem 1.5rem">
         <h3 style="font-family:var(--font-heading);font-size:1rem;font-weight:600;margin-bottom:.35rem">Prefer to email us?</h3>
         <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:1rem">No problem. Send us a message and we'll get back within 24 hours.</p>
-        <a href="mailto:support@worksource.supplys" class="btn btn-outline" style="font-size:.85rem">support@worksource.supplys</a>
+        <a href="mailto:support@worksource.supply" class="btn btn-outline" style="font-size:.85rem">support@worksource.supply</a>
       </div>
     </div>
   </section>

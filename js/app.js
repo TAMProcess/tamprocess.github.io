@@ -388,9 +388,11 @@
   if(bpForm){
     bpForm.addEventListener('submit',function(e){
       e.preventDefault();
-      bpForm.style.display='none';
-      var success = document.getElementById('formSuccess');
-      if(success) success.style.display='block';
+      sendForm(bpForm, 'New Blueprint Request', function(){
+        bpForm.style.display='none';
+        var success = document.getElementById('formSuccess');
+        if(success) success.style.display='block';
+      });
     });
   }
 
@@ -429,7 +431,27 @@
     var selectedDate = null;
     var selectedTime = null;
     var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var availableTimes = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
+    var availableTimes = [
+      '8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM',
+      '11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM',
+      '2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM',
+      '5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM',
+      '8:00 PM','8:30 PM','9:00 PM','9:30 PM','10:00 PM'
+    ];
+
+    /* Auto-detect user timezone */
+    var tzSelect = document.getElementById('sch-tz');
+    if(tzSelect){
+      try{
+        var userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        var opts = tzSelect.querySelectorAll('option');
+        var matched = false;
+        for(var oi=0;oi<opts.length;oi++){
+          if(opts[oi].value === userTZ){ tzSelect.value = userTZ; matched = true; break; }
+        }
+        if(!matched) tzSelect.value = 'America/New_York';
+      }catch(e){}
+    }
 
     function renderCalendar(){
       calendarMonth.textContent = months[calMonth] + ' ' + calYear;
@@ -440,11 +462,9 @@
       for(var e = 0; e < first; e++) html += '<div class="calendar-day empty"></div>';
       for(var d = 1; d <= daysInMonth; d++){
         var date = new Date(calYear, calMonth, d);
-        var day = date.getDay();
         var isPast = date < today;
-        var isWeekend = day === 0 || day === 6;
         var cls = 'calendar-day';
-        if(isPast || isWeekend) cls += ' past';
+        if(isPast) cls += ' past';
         else cls += ' available';
         if(selectedDate && date.toDateString() === selectedDate.toDateString()) cls += ' selected';
         html += '<div class="' + cls + '" data-date="' + date.toISOString() + '">' + d + '</div>';
@@ -458,6 +478,21 @@
           showTimeslots();
         });
       });
+    }
+
+    function convertTimeToEST(timeStr, fromTZ){
+      /* Convert a time string like "2:00 PM" on selectedDate from fromTZ to America/New_York */
+      var parts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+      if(!parts) return timeStr;
+      var h = parseInt(parts[1]); var m = parseInt(parts[2]); var ampm = parts[3].toUpperCase();
+      if(ampm === 'PM' && h !== 12) h += 12;
+      if(ampm === 'AM' && h === 12) h = 0;
+      var dt = new Date(selectedDate);
+      dt.setHours(h, m, 0, 0);
+      try{
+        var estStr = dt.toLocaleString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',hour12:true});
+        return estStr;
+      }catch(e){ return timeStr; }
     }
 
     function showTimeslots(){
@@ -486,8 +521,20 @@
       var summary = document.getElementById('slotSummary');
       if(display && summary && selectedDate && selectedTime){
         display.style.display = 'block';
-        summary.textContent = selectedDate.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'}) + ' at ' + selectedTime;
+        var tz = tzSelect ? tzSelect.value : 'America/New_York';
+        var estTime = convertTimeToEST(selectedTime, tz);
+        var dateStr = selectedDate.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+        summary.textContent = dateStr + ' at ' + selectedTime + ' (your time)';
+        /* Store EST conversion as hidden data for form submit */
+        summary.setAttribute('data-est', estTime);
       }
+    }
+
+    /* re-update display when timezone changes */
+    if(tzSelect){
+      tzSelect.addEventListener('change', function(){
+        if(selectedDate && selectedTime) updateSlotDisplay();
+      });
     }
 
     document.getElementById('calPrev').addEventListener('click', function(){
@@ -502,9 +549,31 @@
     if(scheduleForm){
       scheduleForm.addEventListener('submit', function(e){
         e.preventDefault();
-        scheduleForm.style.display = 'none';
-        var success = document.getElementById('scheduleSuccess');
-        if(success) success.style.display = 'block';
+        var tz = tzSelect ? tzSelect.value : 'America/New_York';
+        var summary = document.getElementById('slotSummary');
+        var estTime = summary ? summary.getAttribute('data-est') : '';
+        /* Add booking details to form data */
+        var dateStr = selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : 'Not selected';
+        var hiddenFields = {
+          booking_date: dateStr,
+          booking_time_customer: selectedTime || 'Not selected',
+          customer_timezone: tz,
+          booking_time_est: estTime || selectedTime || 'N/A'
+        };
+        /* Create temp hidden inputs */
+        Object.keys(hiddenFields).forEach(function(k){
+          var inp = document.createElement('input');
+          inp.type = 'hidden'; inp.name = k; inp.value = hiddenFields[k];
+          scheduleForm.appendChild(inp);
+        });
+        var btn = scheduleForm.querySelector('button[type="submit"]');
+        btn.textContent = 'Booking...';
+        btn.disabled = true;
+        sendForm(scheduleForm, 'New Consultation Booking', function(){
+          scheduleForm.style.display = 'none';
+          var success = document.getElementById('scheduleSuccess');
+          if(success) success.style.display = 'block';
+        });
       });
     }
   }
@@ -559,12 +628,29 @@
     if(intakeForm){
       intakeForm.addEventListener('submit', function(e){
         e.preventDefault();
-        document.getElementById('intakeFlow').style.display = 'none';
-        document.getElementById('intakeSuccess').style.display = 'block';
+        sendForm(intakeForm, 'New Get Started Inquiry', function(){
+          document.getElementById('intakeFlow').style.display = 'none';
+          document.getElementById('intakeSuccess').style.display = 'block';
+        });
       });
     }
 
     showStep(0);
+  }
+
+  /* ============ FORM SUBMIT HELPER ============ */
+  var FORM_EMAIL = 'support@worksource.supply';
+  function sendForm(formEl, subject, onSuccess){
+    var data = new FormData(formEl);
+    var obj = {_subject: subject};
+    data.forEach(function(val, key){ obj[key] = val; });
+    fetch('https://formsubmit.co/ajax/' + FORM_EMAIL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(obj)
+    }).then(function(r){ return r.json(); })
+    .then(function(){ if(onSuccess) onSuccess(); })
+    .catch(function(){ if(onSuccess) onSuccess(); });
   }
 
   /* ============ SHOP INTAKE FORM ============ */
@@ -575,15 +661,38 @@
       var btn = shopIntake.querySelector('button[type="submit"]');
       var btnText = btn.querySelector('.btn-text');
       if(btnText){
-        btnText.textContent = 'Submitted!';
-        btnText.setAttribute('data-text','Submitted!');
-      } else {
-        btn.textContent = 'Submitted!';
+        btnText.textContent = 'Sending...';
+        btnText.setAttribute('data-text','Sending...');
       }
-      btn.style.opacity = '.7';
       btn.disabled = true;
-      var inputs = shopIntake.querySelectorAll('input,select,textarea');
-      for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
+      sendForm(shopIntake, 'New Lead from Shop Page', function(){
+        if(btnText){
+          btnText.textContent = 'Sent! We\'ll be in touch.';
+          btnText.setAttribute('data-text','Sent! We\'ll be in touch.');
+        } else {
+          btn.textContent = 'Sent! We\'ll be in touch.';
+        }
+        btn.style.opacity = '.7';
+        var inputs = shopIntake.querySelectorAll('input,select,textarea');
+        for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
+      });
+    });
+  }
+
+  /* ============ PROMO BOOKING FORM (homepage) ============ */
+  var promoBook = document.getElementById('promoBookForm');
+  if(promoBook){
+    promoBook.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = promoBook.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      sendForm(promoBook, 'Free Consult Request (Homepage)', function(){
+        btn.textContent = 'Booked! We\'ll call you soon.';
+        btn.style.opacity = '.7';
+        var inputs = promoBook.querySelectorAll('input');
+        for(var i=0;i<inputs.length;i++) inputs[i].disabled = true;
+      });
     });
   }
 
@@ -594,10 +703,13 @@
       e.preventDefault();
       var input = emailForm.querySelector('input[type="email"]');
       var btn = emailForm.querySelector('button');
-      btn.textContent = 'Subscribed!';
-      btn.style.opacity = '.7';
+      btn.textContent = 'Sending...';
       btn.disabled = true;
-      if(input) input.disabled = true;
+      sendForm(emailForm, 'New Email Subscriber', function(){
+        btn.textContent = 'Subscribed!';
+        btn.style.opacity = '.7';
+        if(input) input.disabled = true;
+      });
     });
   }
 

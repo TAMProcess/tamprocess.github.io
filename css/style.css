@@ -80,6 +80,9 @@ button{cursor:pointer}
 .nav-link:hover,.nav-link.active{color:#fff}
 .nav-link--cta{color:#fff;padding:.6rem 1.4rem;border:1px solid var(--glass-border);border-radius:100px;background:var(--glass-bg);font-size:1rem;transition:border-color .3s,background .3s}
 .nav-link--cta:hover{border-color:var(--accent-blue);background:rgba(0,212,255,.08)}
+.nav-link--phone{display:flex;align-items:center;gap:.35rem;color:var(--accent-green);font-weight:600;font-size:1rem;white-space:nowrap}
+.nav-link--phone:hover{color:#fff}
+.nav-phone-icon{font-size:1rem}
 .nav-toggle{display:flex;flex-direction:column;gap:5px;width:28px;padding:4px 0;z-index:1001;background:none}
 .nav-toggle span{display:block;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
 .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -90,6 +93,7 @@ button{cursor:pointer}
   .nav-links{position:static;background:none;backdrop-filter:none;flex-direction:row;gap:1.75rem;opacity:1;pointer-events:auto}
   .nav-link{font-size:.82rem}
   .nav-link--cta{font-size:.82rem;padding:.5rem 1.2rem}
+  .nav-link--phone{font-size:.82rem}
   .nav-toggle{display:none}
 }
 
@@ -550,6 +554,17 @@ button{cursor:pointer}
 .intake-check input:checked~.intake-check-box{background:var(--accent-blue);border-color:var(--accent-blue)}
 .intake-check input:checked~.intake-check-box::after{content:'✓';font-size:.65rem;color:#050510;font-weight:700}
 .intake-privacy{text-align:center;font-size:.7rem;color:var(--text-dim);margin-top:.25rem}
+
+/* ---------- PROMO SPLIT (homepage) ---------- */
+.promo-split{display:grid;gap:2rem;align-items:center}
+@media(min-width:768px){.promo-split{grid-template-columns:1fr 340px;gap:3rem}}
+.promo-copy .section-heading{margin-bottom:.5rem}
+.promo-copy .section-sub{margin-bottom:0}
+.promo-book{padding:1.75rem;border-radius:var(--radius)}
+.promo-book-form{display:flex;flex-direction:column;gap:.6rem}
+.promo-book-form input{width:100%;padding:.65rem .85rem;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:var(--radius-xs);color:#fff;font-size:.85rem;font-family:var(--font-body);transition:border-color .3s}
+.promo-book-form input:focus{outline:none;border-color:var(--accent-blue)}
+.promo-book-form input::placeholder{color:var(--text-muted)}
 
 /* ---------- BUILD GRID (homepage) ---------- */
 .build-grid{display:grid;gap:1rem;margin-top:2rem}
