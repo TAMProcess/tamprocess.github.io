@@ -20,6 +20,14 @@ var BUSINESS_NAME = 'Work Source Supply';
 var CONFIRM_EXPIRY_MINUTES = 30;      // Unconfirmed bookings expire after 30 min
 var MAX_BOOKINGS_PER_EMAIL_PER_DAY = 2; // Rate limit per email per day
 
+// ═══════════ HELPER: Normalize date from Sheets (Date object → "YYYY-MM-DD") ═══════════
+function normalizeDate(val) {
+  if (val instanceof Date) {
+    return val.getFullYear() + '-' + String(val.getMonth() + 1).padStart(2, '0') + '-' + String(val.getDate()).padStart(2, '0');
+  }
+  return String(val);
+}
+
 // ═══════════ GET — Return booked (confirmed) slots ═══════════
 function doGet(e) {
   // If this is a confirmation click
@@ -38,7 +46,7 @@ function doGet(e) {
     // Columns: date, time, name, email, status, confirmId, createdAt
     var status = data[i][4];
     if (status === 'confirmed' || status === 'pending') {
-      slots.push({ date: data[i][0], time: data[i][1] });
+      slots.push({ date: normalizeDate(data[i][0]), time: String(data[i][1]) });
     }
   }
   return ContentService.createTextOutput(JSON.stringify(slots))
@@ -69,7 +77,7 @@ function doPost(e) {
 
     // Check if slot is already booked
     for (var i = 1; i < data.length; i++) {
-      if (data[i][0] === date && data[i][1] === time &&
+      if (normalizeDate(data[i][0]) === date && String(data[i][1]) === time &&
           (data[i][4] === 'confirmed' || data[i][4] === 'pending')) {
         return jsonResp({ error: 'Slot already booked' });
       }
