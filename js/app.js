@@ -747,6 +747,11 @@
           document.getElementById('intakeProgress').style.display = 'none';
           document.getElementById('intakeSuccess').style.display = 'block';
         });
+        // Log to Google Sheet
+        var formData = new FormData(intakeForm);
+        var logObj = { type:'inquiry' };
+        formData.forEach(function(val, key){ logObj[key] = val; });
+        logToSheet(logObj);
       });
     }
 
@@ -768,6 +773,16 @@
     .catch(function(){ if(onSuccess) onSuccess(); });
   }
 
+  /* ============ LOG TO GOOGLE SHEET ============ */
+  function logToSheet(payload){
+    if(!BOOKINGS_API) return;
+    fetch(BOOKINGS_API, {
+      method:'POST',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify(payload)
+    }).catch(function(){});
+  }
+
   /* ============ EMAIL CAPTURE ============ */
   var emailForm = document.getElementById('emailCaptureForm');
   if(emailForm){
@@ -777,6 +792,8 @@
       var btn = emailForm.querySelector('button');
       btn.textContent = 'Sending...';
       btn.disabled = true;
+      var subEmail = input ? input.value : '';
+      logToSheet({ type:'subscriber', email:subEmail, source:'homepage' });
       sendForm(emailForm, 'New Email Subscriber', function(){
         btn.textContent = 'Subscribed!';
         btn.style.opacity = '.7';

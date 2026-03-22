@@ -53,10 +53,70 @@ function doGet(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// ═══════════ POST — Save a new booking ═══════════
+// ═══════════ POST — Route by form type ═══════════
 function doPost(e) {
   try {
     var body = JSON.parse(e.postData.contents);
+    var type = String(body.type || 'booking');
+
+    if (type === 'subscriber') return handleSubscriber(body);
+    if (type === 'inquiry') return handleInquiry(body);
+    return handleBooking(body);
+  } catch (err) {
+    return jsonResp({ error: 'Server error' });
+  }
+}
+
+// ═══════════ SUBSCRIBER — Save newsletter signup ═══════════
+function handleSubscriber(body) {
+  var email = String(body.email || '').substring(0, 100);
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return jsonResp({ error: 'Invalid email' });
+  }
+  var sheet = getOrCreateSheet('Subscribers', ['email', 'subscribedAt', 'source']);
+  // Check for duplicate
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]).toLowerCase() === email.toLowerCase()) {
+      return jsonResp({ success: true, message: 'Already subscribed' });
+    }
+  }
+  sheet.appendRow([email, new Date().toISOString(), String(body.source || 'website')]);
+  return jsonResp({ success: true, message: 'Subscribed' });
+}
+
+// ═══════════ INQUIRY — Save intake form submission ═══════════
+function handleInquiry(body) {
+  var email = String(body.email || '').substring(0, 100);
+  var name = String(body.name || '').substring(0, 100);
+  if (!email || !name) {
+    return jsonResp({ error: 'Missing required fields' });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return jsonResp({ error: 'Invalid email' });
+  }
+  var sheet = getOrCreateSheet('Inquiries', [
+    'name', 'email', 'phone', 'businessName', 'businessType', 'services',
+    'existingWebsite', 'timeline', 'cityState', 'plan', 'submittedAt'
+  ]);
+  sheet.appendRow([
+    name,
+    email,
+    String(body.phone || '').substring(0, 30),
+    String(body.businessName || '').substring(0, 100),
+    String(body.businessType || '').substring(0, 200),
+    String(body.needs || '').substring(0, 500),
+    String(body.existingWebsite || '').substring(0, 200),
+    String(body.timeline || '').substring(0, 50),
+    String(body.cityState || '').substring(0, 100),
+    String(body.plan || '').substring(0, 50),
+    new Date().toISOString()
+  ]);
+  return jsonResp({ success: true, message: 'Inquiry saved' });
+}
+
+// ═══════════ BOOKING — Save a new booking ═══════════
+function handleBooking(body) {
     var date = String(body.date || '').substring(0, 20);
     var time = String(body.time || '').substring(0, 20);
     var name = String(body.name || '').substring(0, 100);
@@ -110,9 +170,6 @@ function doPost(e) {
     sendOwnerNotification(name, email, date, time);
 
     return jsonResp({ success: true, message: 'Booking pending confirmation' });
-  } catch (err) {
-    return jsonResp({ error: 'Server error' });
-  }
 }
 
 // ═══════════ CONFIRMATION HANDLER ═══════════
@@ -229,12 +286,16 @@ function sendOwnerNotification(name, email, date, time) {
 
 // ═══════════ HELPER: Get or create sheet ═══════════
 function getSheet() {
+  return getOrCreateSheet('Bookings', ['date', 'time', 'name', 'email', 'status', 'confirmId', 'createdAt']);
+}
+
+function getOrCreateSheet(tabName, headers) {
   var ss = SpreadsheetApp.openById(SHEET_ID);
-  var sheet = ss.getSheetByName('Bookings');
+  var sheet = ss.getSheetByName(tabName);
   if (!sheet) {
-    sheet = ss.insertSheet('Bookings');
-    sheet.appendRow(['date', 'time', 'name', 'email', 'status', 'confirmId', 'createdAt']);
-    sheet.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sheet = ss.insertSheet(tabName);
+    sheet.appendRow(headers);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
   }
   return sheet;
 }
