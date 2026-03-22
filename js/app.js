@@ -478,7 +478,7 @@
     ];
 
     /* ---------- BOOKING PERSISTENCE ---------- */
-    var BOOKINGS_API = 'https://script.google.com/macros/s/AKfycbzwYytmJWgUEDVQs94rvWrHfgemsDbNylTYTfgVHk24hu2kbPRYJw2LRze287uaAkWS/exec';
+    var BOOKINGS_API = 'https://script.google.com/macros/s/AKfycbxSVZKdCYGSDi_BmLwjc6mrfYxV1sSyavV2oNKhco2eRRNGlYBH7KYiRpZ3t88ri1CB/exec';
     var bookedSlots = {}; // { "2026-03-20": ["10:00 AM", "2:30 PM"] }
 
     function dateKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
